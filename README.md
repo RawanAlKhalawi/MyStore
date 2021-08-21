@@ -1,6 +1,12 @@
 # MyStore
 
+Udacity My Stotre Angular Project.
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.2.
+
+## Build and run the application
+
+`npm install`
+`ng serve`
 
 ## Development server
 

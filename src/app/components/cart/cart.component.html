@@ -13,6 +13,7 @@
         required
         min="0"
       />
+      <button (click)="remove(cartProduct.product.id)">remove</button>
     </ul>
   </div>
 </div>
@@ -23,11 +24,15 @@
       type="text"
       name="fullName"
       required
-      minlength="8"
+      minlength="4"
       maxlength="32"
       [(ngModel)]="fullName"
       placeholder="Enter your full name"
+      #name="ngModel"
     />
+    <div *ngIf="name.errors && name.dirty">
+      The number of letters should be greater than 4
+    </div>
     <br />
     <textarea
       type="text"
@@ -37,16 +42,25 @@
       maxlength="32"
       [(ngModel)]="address"
       placeholder="Enter your address"
+      #addressText="ngModel"
     ></textarea>
+    <div *ngIf="addressText.errors && addressText.touched">
+      The number of letters should be greater than 8
+    </div>
     <br />
     <textarea
       type="text"
       name="card"
       required
       minlength="10"
+      maxlength="10"
       [(ngModel)]="card"
       placeholder="Enter your card"
+      #creditCard="ngModel"
     ></textarea>
+    <div *ngIf="creditCard.errors && creditCard.dirty">
+      The number of digits should be equal 10
+    </div>
     <br />
     <input
       type="submit"
