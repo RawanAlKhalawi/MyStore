@@ -1,0 +1,58 @@
+<div class="cart-item">
+  <div class="cart-item-details">
+    <ul *ngFor="let cartProduct of cartProducts">
+      <img src="{{ cartProduct.product.url }}" class="img" />
+
+      <li>{{ cartProduct.product.name }}</li>
+      <li>{{ cartProduct.product.price }} $</li>
+      <input
+        [(ngModel)]="cartProduct.quantity"
+        (ngModelChange)="quantityChange(cartProduct)"
+        type="number"
+        class="number-input"
+        required
+        min="0"
+      />
+    </ul>
+  </div>
+</div>
+<div class="cart-pane">
+  <div>total: {{ cartTotal }}$</div>
+  <form class="order-form" #form="ngForm" (ngSubmit)="addOrder()">
+    <input
+      type="text"
+      name="fullName"
+      required
+      minlength="8"
+      maxlength="32"
+      [(ngModel)]="fullName"
+      placeholder="Enter your full name"
+    />
+    <br />
+    <textarea
+      type="text"
+      name="address"
+      required
+      minlength="8"
+      maxlength="32"
+      [(ngModel)]="address"
+      placeholder="Enter your address"
+    ></textarea>
+    <br />
+    <textarea
+      type="text"
+      name="card"
+      required
+      minlength="10"
+      [(ngModel)]="card"
+      placeholder="Enter your card"
+    ></textarea>
+    <br />
+    <input
+      type="submit"
+      [disabled]="form.invalid || cartTotal == 0"
+      value="Submit"
+    />
+    <p *ngIf="cartTotal == 0">Please add the product</p>
+  </form>
+</div>
